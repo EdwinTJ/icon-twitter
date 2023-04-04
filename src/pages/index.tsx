@@ -3,6 +3,7 @@ import { type NextPage } from "next";
 
 import { api } from "~/utils/api";
 
+import Image from "next/image";
 import { LoadingPage, LoadingSpinner } from "~/components/loading";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
@@ -34,17 +35,16 @@ const CreatePostWizard = () => {
   if (!user) return null;
 
   return (
+
     <div className="flex w-full gap-3">
-      <UserButton
-        appearance={{
-          elements: {
-            userButtonAvatarBox: {
-              width: 56,
-              height: 56,
-            },
-          },
-        }}
-      />
+      <UserButton appearance={{
+        elements: {
+          userButtonAvatarBox: {
+            width: 56,
+            height: 56
+          }
+        }
+      }} />
       <input
         placeholder="Type some emojis!"
         className="grow bg-transparent outline-none"
@@ -87,7 +87,7 @@ const Feed = () => {
 
   return (
     <div className="flex grow flex-col overflow-y-scroll">
-      {[...data].map((fullPost) => (
+      {[...data, ...data, ...data, ...data].map((fullPost) => (
         <PostView {...fullPost} key={fullPost.post.id} />
       ))}
     </div>
@@ -116,7 +116,7 @@ const Home: NextPage = () => {
 
       <Feed />
       <div className="flex items-center justify-between p-4 text-xl">
-        <a href="https://github.com/EdwinTJ/icon-twitter">
+        <a href="https://github.com/t3dotgg/chirp">
           <div className="flex items-center justify-center gap-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -130,6 +130,9 @@ const Home: NextPage = () => {
             <div>Github</div>
           </div>
         </a>
+        <span>
+          <a href="https://patreon.com/t3dotgg">🐦 Chirp Blue</a>
+        </span>
       </div>
     </PageLayout>
   );
