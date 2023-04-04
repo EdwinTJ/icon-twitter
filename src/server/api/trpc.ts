@@ -48,7 +48,6 @@ import { ZodError } from "zod";
 
 const t = initTRPC.context<typeof createTRPCContext>().create({
   transformer: superjson,
-
   errorFormatter({ shape, error }) {
     return {
       ...shape,
@@ -60,6 +59,7 @@ const t = initTRPC.context<typeof createTRPCContext>().create({
     };
   },
 });
+
 /**
  * 3. ROUTER & PROCEDURE (THE IMPORTANT BIT)
  *

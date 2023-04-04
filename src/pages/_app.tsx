@@ -12,10 +12,10 @@ const MyApp: AppType = ({ Component, pageProps }) => {
     <ClerkProvider {...pageProps}>
       <Head>
         <title>Icon Twitter</title>
-        <meta name="description" content="Post emojis" />
+        <meta name="description" content="💭" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Toaster />
+      <Toaster position="bottom-center" />
       <Component {...pageProps} />
     </ClerkProvider>
   );
