@@ -14,7 +14,7 @@ import { Redis } from "@upstash/redis";
 const filterUserForClient = (user: User) => {
   return {
     id: user.id,
-    username: user.firstName + "" + user.lastName,
+    username: user.firstName + " " + user.lastName,
     profileImageUrl: user.profileImageUrl,
   };
 };
