@@ -1,18 +1,22 @@
-# Chirp
+# Icon Twitter
 
-[See it live here: https://🐦.t3.gg](https://🐦.t3.gg)
+[See it live here: https://icon-twitter-uf42-ipucn3gq4-edwintj.vercel.app/)
 
 ## What is this?
 
-A project I built using [create-t3-app](https://create.t3.gg)
+Is a replica of the twitter app but only accepts emojis.
+This project was created by   using [create-t3-app](https://create.t3.gg)
 
-I wanted to make a "proper tutorial for the T3 Stack" and this is as close as I could get.
-
-Hope it's helpful!
-
-[YOUTUBE VIDEO](https://youtu.be/YkOSUVzOAA4)
-
-## What do I deploy it on?
+## Tech that I used for creating the app
+- Next Js
+- TypeScript
+- Zod
+- Tailwindcss
+- Prisma
+- react-hot-toast
+- dayjs
+- superjson
+## These are the tools I used for deploy
 
 - Clerk [https://clerk.com/?utm_campaign=theo-dtc](https://clerk.com/?utm_campaign=theo-dtc)
 - Planetscale [https://planetscale.com/?ref=theo](https://planetscale.com/?ref=theo)
