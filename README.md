@@ -11,6 +11,7 @@ This project was created by   using [create-t3-app](https://create.t3.gg)
 - Next Js
 - TypeScript
 - Zod
+- tRPC
 - Tailwindcss
 - Prisma
 - react-hot-toast
