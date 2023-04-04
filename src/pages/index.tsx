@@ -35,16 +35,17 @@ const CreatePostWizard = () => {
   if (!user) return null;
 
   return (
-
     <div className="flex w-full gap-3">
-      <UserButton appearance={{
-        elements: {
-          userButtonAvatarBox: {
-            width: 56,
-            height: 56
-          }
-        }
-      }} />
+      <UserButton
+        appearance={{
+          elements: {
+            userButtonAvatarBox: {
+              width: 56,
+              height: 56,
+            },
+          },
+        }}
+      />
       <input
         placeholder="Type some emojis!"
         className="grow bg-transparent outline-none"
@@ -87,7 +88,7 @@ const Feed = () => {
 
   return (
     <div className="flex grow flex-col overflow-y-scroll">
-      {[...data, ...data, ...data, ...data].map((fullPost) => (
+      {[...data].map((fullPost) => (
         <PostView {...fullPost} key={fullPost.post.id} />
       ))}
     </div>
