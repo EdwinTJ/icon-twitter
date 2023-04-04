@@ -117,7 +117,7 @@ const Home: NextPage = () => {
 
       <Feed />
       <div className="flex items-center justify-between p-4 text-xl">
-        <a href="https://github.com/t3dotgg/chirp">
+        <a href="https://github.com/EdwinTJ/icon-twitter">
           <div className="flex items-center justify-center gap-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -131,9 +131,6 @@ const Home: NextPage = () => {
             <div>Github</div>
           </div>
         </a>
-        <span>
-          <a href="https://patreon.com/t3dotgg">🐦 Chirp Blue</a>
-        </span>
       </div>
     </PageLayout>
   );
