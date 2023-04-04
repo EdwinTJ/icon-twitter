@@ -8,21 +8,23 @@ import {
   privateProcedure,
   publicProcedure,
 } from "~/server/api/trpc";
-import { Ratelimit } from "@upstash/ratelimit";
-import { Redis } from "@upstash/redis";
 
 const filterUserForClient = (user: User) => {
   return {
     id: user.id,
-    username: user.firstName + " " + user.lastName,
+    username: user.firstName,
     profileImageUrl: user.profileImageUrl,
   };
 };
+
+import { Ratelimit } from "@upstash/ratelimit"; // for deno: see above
+import { Redis } from "@upstash/redis";
 
 // Create a new ratelimiter, that allows 3 requests per 1 minute
 const ratelimit = new Ratelimit({
   redis: Redis.fromEnv(),
   limiter: Ratelimit.slidingWindow(3, "1 m"),
+  analytics: true,
 });
 
 export const postsRouter = createTRPCRouter({
@@ -39,13 +41,17 @@ export const postsRouter = createTRPCRouter({
       })
     ).map(filterUserForClient);
 
+    console.log(users);
+
     return posts.map((post) => {
       const author = users.find((user) => user.id === post.authorId);
+
       if (!author || !author.username)
         throw new TRPCError({
           code: "INTERNAL_SERVER_ERROR",
-          message: "Author not found",
+          message: "Author for post not found",
         });
+
       return {
         post,
         author: {
@@ -55,6 +61,7 @@ export const postsRouter = createTRPCRouter({
       };
     });
   }),
+
   create: privateProcedure
     .input(
       z.object({
@@ -65,12 +72,8 @@ export const postsRouter = createTRPCRouter({
       const authorId = ctx.userId;
 
       const { success } = await ratelimit.limit(authorId);
-      if (!success) {
-        throw new TRPCError({
-          code: "TOO_MANY_REQUESTS",
-          message: "You are posting too fast",
-        });
-      }
+      if (!success) throw new TRPCError({ code: "TOO_MANY_REQUESTS" });
+
       const post = await ctx.prisma.post.create({
         data: {
           authorId,
